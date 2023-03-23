@@ -41,6 +41,7 @@ namespace l1
 			is.read(this->array, buf);
 			is.close();
 		}
+		else { std::cerr << "Failed to open file " << filename << std::endl; }
 	}
 
 	Txt::Txt(const Txt& t) : buf{ t.buf }, lines{ t.lines }  //copy constructor
