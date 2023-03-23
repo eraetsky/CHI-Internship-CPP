@@ -12,10 +12,7 @@ namespace l1
 		Txt(const char* filename); //constructor with 1 argument
 		Txt(const Txt& t); //copy constructor
 		Txt& operator=(Txt const& other); //copy = operator
-		Txt(Txt&& other) noexcept : array{ other.array }, buf{ other.buf }, lines{ other.lines } //move constructor
-		{
-			other.array = nullptr; other.buf = 0; other.lines = 0;
-		}
+		Txt(Txt&& other) noexcept; //move constructor
 		Txt& operator=(Txt&& other) noexcept; //move = operator
 		~Txt();
 		size_t size() const;

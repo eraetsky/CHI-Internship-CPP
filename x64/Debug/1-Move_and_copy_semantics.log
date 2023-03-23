@@ -1,5 +1,5 @@
 ﻿  Txt.cpp
   l1.cpp
   Создание кода...
-C:\Users\Evgeniy\source\repos\1-Move_and_copy_semantics\1-Move_and_copy_semantics\Txt.cpp(59): warning C4172: возвращение адреса локальной или временной переменной : t
+C:\Users\Evgeniy\source\repos\1-Move_and_copy_semantics\1-Move_and_copy_semantics\Txt.cpp(57): warning C4172: возвращение адреса локальной или временной переменной : t
   1-Move_and_copy_semantics.vcxproj -> C:\Users\Evgeniy\source\repos\1-Move_and_copy_semantics\x64\Debug\1-Move_and_copy_semantics.exe

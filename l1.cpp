@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
 	{
 		std::cout << argv[0] << ": missing file \n";
 		return 1;
-	}
+	}  
 	else if (argc != 2)
 	{
 		std::cout << argv[0] << ": too many arg\n";

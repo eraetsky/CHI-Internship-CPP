@@ -43,14 +43,12 @@ namespace l1
 		}
 	}
 
-	Txt::Txt(const Txt& t) //copy constructor
+	Txt::Txt(const Txt& t) : buf{ t.buf }, lines{ t.lines }  //copy constructor
 	{
 		if (!t.array) { this->array = nullptr; this->buf = 0; this->lines = 0; return; }
 		if (this->array)
 			delete[] this->array;
 		this->array = new char[t.buf + 1];
-		this->buf = t.buf;
-		this->lines = t.lines;
 		strncpy_s(this->array, this->buf + 1, t.array, t.buf);
 	}
 
@@ -66,6 +64,12 @@ namespace l1
 		strncpy_s(this->array, this->buf + 1, other.array, other.buf);
 		return *this;
 	}
+
+	Txt::Txt(Txt&& other) noexcept : array{ other.array }, buf{ other.buf }, lines{ other.lines } //move constructor
+	{
+		other.array = nullptr; other.buf = 0; other.lines = 0;
+	}
+
 	Txt& Txt::operator=(Txt&& other) noexcept // move = operator
 	{
 		if (this == &other) { return *this; }
