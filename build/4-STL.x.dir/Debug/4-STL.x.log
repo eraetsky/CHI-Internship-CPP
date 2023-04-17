@@ -1,0 +1,5 @@
+﻿  main.cpp
+C:\Users\User\Documents\Cmake 4-STL\CurrentTime.h(16,30): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Documents\Cmake 4-STL\CurrentTime.h(29,55): warning C4996: 'gmtime': This function or variable may be unsafe. Consider using gmtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Documents\Cmake 4-STL\Analyzer.h(54,17): warning C4244: 'return': conversion from 'double' to 'time_t', possible loss of data
+  4-STL.x.vcxproj -> C:\Users\User\Documents\Cmake 4-STL\build\Debug\4-STL.x.exe

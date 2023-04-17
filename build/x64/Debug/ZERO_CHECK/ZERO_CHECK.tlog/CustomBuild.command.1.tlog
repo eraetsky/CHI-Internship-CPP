@@ -1,0 +1,10 @@
+^C:\USERS\USER\DOCUMENTS\CMAKE 4-STL\BUILD\CMAKEFILES\F50CEB93E9A5A6E9C35AAA0E8FC6AD88\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/User/Documents/Cmake 4-STL" "-BC:/Users/User/Documents/Cmake 4-STL/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/User/Documents/Cmake 4-STL/build/4-STL.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
