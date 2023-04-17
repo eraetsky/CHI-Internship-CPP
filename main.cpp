@@ -30,13 +30,9 @@ int main()
     queue.push(msg1);
     queue.push(msg2);
     queue.push(msg3);
-
     queue.push(msg4);
     queue.push(vec);
     
-    queue.print_and_clean(std::cout);
-    
-    std::cout << current_time_and_date_string() << std::endl;
 
     MessageQueueAnalyzer a;
     a.analyze(queue);
