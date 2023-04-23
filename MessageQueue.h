@@ -56,7 +56,7 @@ public:
 	}
 	
 
-	void print_and_clean(std::ostream& out) 
+	void print_and_clean(std::ostream& out) //only used for debugging 
 	{
 		while (!pq.empty())
 		{
