@@ -1,5 +1,6 @@
-﻿#include<iostream>
+#include<iostream>
 #include "Matrix.h"
+
 
 bool custom_cmp(const int& a, const int& b)
 {
@@ -42,5 +43,7 @@ int main()
 	/*7 | 8 |
 	  0 | 0 |*/
 	std::cout << summ.getRank() << std::endl; //2
+
+
 	return 0;
 }
