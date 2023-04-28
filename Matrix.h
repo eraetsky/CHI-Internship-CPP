@@ -1,4 +1,7 @@
 #pragma once
+#include <string>
+#include <optional>
+#include <initializer_list>
 #include <vector>
 #include <iostream>
 #include <ostream>
@@ -10,6 +13,11 @@ struct dimension { static constexpr size_t value = 0; };
 template<typename T, typename... V>
 struct dimension<std::vector<T, V...>> {
 	static constexpr std::size_t value = 1 + dimension<T>::value;
+};
+
+template<typename T, typename... V>
+struct dimension<std::vector<Row<T>, V...>> {
+	static constexpr std::size_t value = 2 + dimension<T>::value;
 };
 
 using uint = unsigned int;
@@ -26,11 +34,12 @@ private:
 	size_t ncols;
 	matrix_t m;
 	using rank_t = dimension<decltype(m)>;
-	size_t rank = rank_t::value + 1; //m is std::vector<Row<T>>,rank_t::value = 1 despite Row<T> = std::vector<T>, 
+	size_t rank = rank_t::value; //first attempt - here rank is the level of nestin - for 2d matrix always equal 2
 public:
 	Matrix() = default;
 	Matrix(size_t d1, size_t d2) : nrows(d1), ncols(d2), m(d1, row_t(d2)) {}
 	Matrix(const Matrix& matrix) : nrows(matrix.nrows), ncols(matrix.ncols), m(matrix.m) {}
+    Matrix(size_t d1, size_t d2, std::initializer_list<std::initializer_list<T>> il);
 	row_t& operator[] (uint);
 	const row_t& operator[] (uint) const; 
 	void resize(size_t, size_t);
@@ -47,32 +56,55 @@ public:
 	Matrix operator-(const Matrix&);
 };
 
+template<typename T>
+ Matrix<T>::Matrix(size_t d1, size_t d2, std::initializer_list<std::initializer_list<T>> il): nrows(d1), ncols(d2), m(d1,Row<T>(d2))
+{
+	auto it1 = il.begin();
+	for (size_t i = 0; i < d1 && it1 != il.end(); ++i, ++it1) {
+		auto it2 = it1->begin();
+		for (size_t j = 0; j < d2 && it2 != it1->end(); ++j, ++it2) {
+			this->m[i][j] = *it2;
+		}
+	}
+}
+
 template <typename T>
 Row<T>& Matrix<T>::operator[] (uint ind)
 {
 	try {
-		if (ind >= nrows) throw ("Exception: Index out of range");
+		if (ind >= nrows)
+		{
+			std::string exc_message = "Exception: Index out of range. Found index " + std::to_string(ind) +
+				", while dimension is " + std::to_string(nrows);
+			throw std::range_error(exc_message);
+		}
 		return this->m[ind];
 		
 	}
-	catch (const char* err) { std::cerr << err << std::endl; }
+	catch (std::range_error err) { std::cerr << err.what() << std::endl; static Row<T> invalid_output; return invalid_output; }
 }
 
 template <typename T>
 const Row<T>& Matrix<T>::operator[] (uint ind) const
 {
 	try {
-		if (ind >= nrows) throw ("Exception: Index out of range");
+		if (ind >= nrows)
+		{
+			std::string exc_message = "Exception: Index out of range. Found index " + std::to_string(ind) +
+				", while dimension is " + std::to_string(nrows);
+			throw std::range_error(exc_message);
+		}
 		return this->m[ind];
+		
 	}
-	catch (const char* err) { std::cerr << err << std::endl; }
+	catch (std::range_error err) { std::cerr << err.what() << std::endl; static Row<T> invalid_output; return invalid_output; }
 }
 
 template <typename T>
 void Matrix<T>::resize(size_t d1, size_t d2) //resize only upwards
 {
 	try {
-		if (d1 <= this->nrows || d2 <= this->ncols) throw("Exception: Possible lose of data while resizing matrix");
+		if (d1 <= this->nrows || d2 <= this->ncols) throw std::range_error("Exception: Possible lose of data while resizing matrix");
 		else 
 		{
 			for (auto it = this->m.begin(); it != this->m.end(); ++it)
@@ -82,7 +114,7 @@ void Matrix<T>::resize(size_t d1, size_t d2) //resize only upwards
 			this->ncols = d2;
 		}
 	}
-	catch(const char* err) { std::cerr << err << std::endl; }
+	catch (std::range_error err) { std::cerr << err.what() << std::endl; return; }
 }
 
 
