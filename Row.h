@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+#include <optional>
 #include <vector>
 #include <algorithm>
 #include <iostream>
@@ -28,6 +30,7 @@ private:
 public:
 	Row() = default;
 	Row(size_t n) : ncols(n), r(std::vector<T>(n)) {}
+	Row(std::vector<T>);
 	T& operator[] (uint);
 	const T& operator[] (uint) const;
 	void resize(size_t);
@@ -36,39 +39,56 @@ public:
 };
 
 template <typename T>
+Row<T>::Row(std::vector<T> vec)
+{
+	this->ncols = vec.size();
+	std::swap(this->r, vec);
+}
+
+template <typename T>
 T& Row<T>::operator[] (uint ind)
 {
 	try {
-		if (ind >= ncols) throw ("Exception: Index out of range");
+		if (ind >= ncols)
+		{
+			std::string exc_message = "Exception: Index out of range. Found index " + std::to_string(ind) +
+				", while dimension is " + std::to_string(ncols);
+			throw std::range_error(exc_message);
+		}
 		return this->r[ind];
 
 	}
-	catch (const char* err) { std::cerr << err << std::endl; }
+	catch (std::range_error err) { std::cerr << err.what() << std::endl; static T invalid_output; return invalid_output; }
 }
 
 template <typename T>
 const T& Row<T>::operator[] (uint ind) const
 {
 	try {
-		if (ind >= ncols) throw ("Exception: Index out of range");
+		if (ind >= ncols)
+		{
+			std::string exc_message = "Exception: Index out of range. Found index " + std::to_string(ind) +
+				", while dimension is " + std::to_string(ncols);
+			throw std::range_error(exc_message);
+		}
 		return this->r[ind];
 
 	}
-	catch (const char* err) { std::cerr << err << std::endl; }
+	catch (std::range_error err) { std::cerr << err.what() << std::endl; static T invalid_output; return invalid_output; }
 }
 
 template<typename T>
 void Row<T>::resize(size_t d)
 {
 	try {
-		if (d <= this->ncols) throw("Exception: Possible lose of data while resizing matrix");
+		if (d <= this->ncols) throw std::range_error("Exception: Possible lose of data while resizing matrix");
 		else
 		{
 			this->r.resize(d);
 			this->ncols = d;
 		}
 	}
-	catch (const char* err) { std::cerr << err << std::endl; }
+	catch (std::range_error err) { std::cerr << err.what() << std::endl; return; }
 }
 
 template<typename T>
