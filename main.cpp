@@ -1,6 +1,6 @@
 #include<iostream>
 #include "Matrix.h"
-
+#include "ConstexprMatrix.h"
 
 bool custom_cmp(const int& a, const int& b)
 {
@@ -22,7 +22,7 @@ int main()
 	0; 0; 0; 0;
 	0; 0; 0; 21;*/
 	m1.sortAllRows(); //sort with default comparator
-	m1.sortAllColumns(custom_cmp); 
+	m1.sortAllColumns(custom_cmp);
 	std::cout << m1 << std::endl;
 	/*0; 0; 24; 42;
 	0; 0; 0; 21;
@@ -44,6 +44,9 @@ int main()
 	  0 | 0 |*/
 	std::cout << summ.getRank() << std::endl; //2
 
+
+	constexpr ConstMatrix<int, 2, 3> a = {1,2,3,4,5,6};
+	std::cout << a;
 
 	return 0;
 }
