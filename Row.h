@@ -15,7 +15,7 @@ bool default_cmp(const T& a, const T& b)
 }
 
 template<>
-bool default_cmp(const std::string& a, const std::string& b) 
+bool default_cmp(const std::string& a, const std::string& b)
 {
 	return a.length() < b.length();
 }
