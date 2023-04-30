@@ -22,26 +22,26 @@ struct dimension<std::vector<Row<T>, V...>> {
 
 using uint = unsigned int;
 
-template <typename T = int>
+template <typename T = int> //only type template parametr - unable to calculate rank in compile time. See ConstexprMatrix.h
 class Matrix
 {
 	using row_t = Row<T>;
 	using matrix_t = std::vector<row_t>;
 	using comparator_t = bool (*)(const T&, const T&);
-	
+
 private:
 	size_t nrows;
 	size_t ncols;
 	matrix_t m;
 	using rank_t = dimension<decltype(m)>;
-	size_t rank = rank_t::value; //first attempt - here rank is the level of nestin - for 2d matrix always equal 2
+	size_t rank = rank_t::value; //dimesion of matrix - always equal to 2
 public:
 	Matrix() = default;
 	Matrix(size_t d1, size_t d2) : nrows(d1), ncols(d2), m(d1, row_t(d2)) {}
 	Matrix(const Matrix& matrix) : nrows(matrix.nrows), ncols(matrix.ncols), m(matrix.m) {}
-    Matrix(size_t d1, size_t d2, std::initializer_list<std::initializer_list<T>> il);
+	Matrix(size_t d1, size_t d2, std::initializer_list<std::initializer_list<T>> il);
 	row_t& operator[] (uint);
-	const row_t& operator[] (uint) const; 
+	const row_t& operator[] (uint) const;
 	void resize(size_t, size_t);
 	void sortRow(uint, comparator_t = default_cmp); //default_cmp in Row.h
 	void sortAllRows(comparator_t = default_cmp);
@@ -57,7 +57,7 @@ public:
 };
 
 template<typename T>
- Matrix<T>::Matrix(size_t d1, size_t d2, std::initializer_list<std::initializer_list<T>> il): nrows(d1), ncols(d2), m(d1,Row<T>(d2))
+Matrix<T>::Matrix(size_t d1, size_t d2, std::initializer_list<std::initializer_list<T>> il) : nrows(d1), ncols(d2), m(d1, Row<T>(d2))
 {
 	auto it1 = il.begin();
 	for (size_t i = 0; i < d1 && it1 != il.end(); ++i, ++it1) {
@@ -79,7 +79,7 @@ Row<T>& Matrix<T>::operator[] (uint ind)
 			throw std::range_error(exc_message);
 		}
 		return this->m[ind];
-		
+
 	}
 	catch (std::range_error err) { std::cerr << err.what() << std::endl; static Row<T> invalid_output; return invalid_output; }
 }
@@ -95,7 +95,7 @@ const Row<T>& Matrix<T>::operator[] (uint ind) const
 			throw std::range_error(exc_message);
 		}
 		return this->m[ind];
-		
+
 	}
 	catch (std::range_error err) { std::cerr << err.what() << std::endl; static Row<T> invalid_output; return invalid_output; }
 }
@@ -105,7 +105,7 @@ void Matrix<T>::resize(size_t d1, size_t d2) //resize only upwards
 {
 	try {
 		if (d1 <= this->nrows || d2 <= this->ncols) throw std::range_error("Exception: Possible lose of data while resizing matrix");
-		else 
+		else
 		{
 			for (auto it = this->m.begin(); it != this->m.end(); ++it)
 				it->resize(d2);
@@ -191,14 +191,14 @@ template <typename T>
 void Matrix<T>::sortColumn(uint ind, bool (*cmp)(const T& a, const T& b))
 {
 	std::vector<T> column;
-	for (size_t i = 0; i < this->nrows; ++i) 
+	for (size_t i = 0; i < this->nrows; ++i)
 		column.push_back(this->m[i][ind]);
-	
+
 	std::sort(column.begin(), column.end(), cmp);
 
-	for (size_t i = 0; i < this->nrows; ++i) 
+	for (size_t i = 0; i < this->nrows; ++i)
 		this->m[i][ind] = column[i];
-	
+
 }
 
 template<typename T>
@@ -211,7 +211,7 @@ void Matrix<T>::sortAllColumns(bool (*cmp)(const T& a, const T& b))
 template<typename T>
 size_t Matrix<T>::getRank() const
 {
-	return this->rank;  
+	return this->rank;
 }
 
 template<typename T>
