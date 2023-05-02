@@ -1,9 +1,3 @@
-2023-05-01 14:44:31
-Capacity: 10, Number of elements: 1
-High urgency - 38.4615%, Normal urgency - 23.0769%, Low urgency - 38.4615%
-Size of all elements: 0.104Kb, total size: 0.176Kb
-The maximum difference between expires of messages is 01:00:00
-
 2023-05-02 11:27:22
 Capacity: 10, Number of elements: 10
 High urgency - 50%, Normal urgency - 30%, Low urgency - 20%
