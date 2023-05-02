@@ -1,0 +1,138 @@
+2023-05-01 14:44:31
+Capacity: 10, Number of elements: 1
+High urgency - 38.4615%, Normal urgency - 23.0769%, Low urgency - 38.4615%
+Size of all elements: 0.104Kb, total size: 0.176Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:22
+Capacity: 10, Number of elements: 10
+High urgency - 50%, Normal urgency - 30%, Low urgency - 20%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:22
+Capacity: 10, Number of elements: 10
+High urgency - 60%, Normal urgency - 20%, Low urgency - 20%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:23
+Capacity: 10, Number of elements: 9
+High urgency - 55.5556%, Normal urgency - 11.1111%, Low urgency - 33.3333%
+Size of all elements: 0.072Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:30
+Capacity: 10, Number of elements: 10
+High urgency - 80%, Normal urgency - 0%, Low urgency - 20%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:34
+Capacity: 10, Number of elements: 10
+High urgency - 80%, Normal urgency - 10%, Low urgency - 10%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:34
+Capacity: 10, Number of elements: 10
+High urgency - 80%, Normal urgency - 10%, Low urgency - 10%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:34
+Capacity: 10, Number of elements: 10
+High urgency - 80%, Normal urgency - 10%, Low urgency - 10%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:34
+Capacity: 10, Number of elements: 10
+High urgency - 80%, Normal urgency - 10%, Low urgency - 10%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:34
+Capacity: 10, Number of elements: 10
+High urgency - 80%, Normal urgency - 10%, Low urgency - 10%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:40
+Capacity: 10, Number of elements: 10
+High urgency - 80%, Normal urgency - 20%, Low urgency - 0%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:40
+Capacity: 10, Number of elements: 10
+High urgency - 80%, Normal urgency - 20%, Low urgency - 0%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:40
+Capacity: 10, Number of elements: 10
+High urgency - 80%, Normal urgency - 20%, Low urgency - 0%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:40
+Capacity: 10, Number of elements: 10
+High urgency - 80%, Normal urgency - 20%, Low urgency - 0%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:40
+Capacity: 10, Number of elements: 10
+High urgency - 80%, Normal urgency - 20%, Low urgency - 0%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:42
+Capacity: 10, Number of elements: 8
+High urgency - 75%, Normal urgency - 12.5%, Low urgency - 12.5%
+Size of all elements: 0.064Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:43
+Capacity: 10, Number of elements: 10
+High urgency - 70%, Normal urgency - 10%, Low urgency - 20%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:44
+Capacity: 10, Number of elements: 10
+High urgency - 60%, Normal urgency - 20%, Low urgency - 20%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:44
+Capacity: 10, Number of elements: 10
+High urgency - 60%, Normal urgency - 20%, Low urgency - 20%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:44
+Capacity: 10, Number of elements: 10
+High urgency - 60%, Normal urgency - 20%, Low urgency - 20%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:44
+Capacity: 10, Number of elements: 10
+High urgency - 60%, Normal urgency - 20%, Low urgency - 20%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:44
+Capacity: 10, Number of elements: 10
+High urgency - 60%, Normal urgency - 20%, Low urgency - 20%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
+2023-05-02 11:27:44
+Capacity: 10, Number of elements: 10
+High urgency - 60%, Normal urgency - 20%, Low urgency - 20%
+Size of all elements: 0.08Kb, total size: 0.248Kb
+The maximum difference between expires of messages is 01:00:00
+
