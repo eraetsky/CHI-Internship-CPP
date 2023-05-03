@@ -22,7 +22,7 @@ struct dimension<std::vector<Row<T>, V...>> {
 
 using uint = unsigned int;
 
-template <typename T = int> //only type template parametr - unable to calculate rank in compile time. See ConstexprMatrix.h
+template <typename T = int> 
 class Matrix
 {
 	using row_t = Row<T>;
@@ -34,7 +34,23 @@ private:
 	size_t ncols;
 	matrix_t m;
 	using rank_t = dimension<decltype(m)>;
-	size_t rank = rank_t::value; //dimesion of matrix - always equal to 2
+	size_t dim = rank_t::value; //dimesion of matrix - always equal to 2
+	/*
+	template <typename... Ts>
+	constexpr void init(T t, Ts... ts)
+	{
+		m[sizeof...(Ts)][0] = t;
+		init(ts...);
+	}
+
+	template <typename... Ts>
+	constexpr void init(T t)
+	{
+		m[sizeof...(Ts)][0] = t;
+	}
+
+	constexpr void init() {}
+	*/
 public:
 	Matrix() = default;
 	Matrix(size_t d1, size_t d2) : nrows(d1), ncols(d2), m(d1, row_t(d2)) {}
@@ -50,11 +66,20 @@ public:
 	void fill(const T&);
 	size_t getRows() const;
 	size_t getCols() const;
-	size_t getRank() const;
+	size_t getDim() const;
 	Matrix plusOrMinus(const Matrix&, bool);
 	Matrix operator+(const Matrix&);
 	Matrix operator-(const Matrix&);
+
+	/*
+	template <typename... Ts>
+	constexpr Matrix(Ts... ts) : nrows(sizeof...(Ts)), ncols(1), m(nrows, row_t(1))
+	{
+		init(ts...);
+	}
+	*/
 };
+
 
 template<typename T>
 Matrix<T>::Matrix(size_t d1, size_t d2, std::initializer_list<std::initializer_list<T>> il) : nrows(d1), ncols(d2), m(d1, Row<T>(d2))
@@ -209,9 +234,9 @@ void Matrix<T>::sortAllColumns(bool (*cmp)(const T& a, const T& b))
 }
 
 template<typename T>
-size_t Matrix<T>::getRank() const
+size_t Matrix<T>::getDim() const
 {
-	return this->rank;
+	return this->dim;
 }
 
 template<typename T>
