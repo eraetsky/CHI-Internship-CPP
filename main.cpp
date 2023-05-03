@@ -2,6 +2,57 @@
 #include "Matrix.h"
 #include "ConstexprMatrix.h"
 
+//compile-time array from stackoverflow
+template< int ... I > struct index_sequence {
+
+	using type = index_sequence;
+	using value_type = int;
+
+	static constexpr std::size_t size()noexcept { return sizeof...(I); }
+};
+
+template< class I1, class I2> struct concat;
+
+template< int ...I, int ...J>
+struct concat< index_sequence<I...>, index_sequence<J...> >
+	: index_sequence< I ..., (J + sizeof...(I))... > {};
+
+template< int N > struct make_index_sequence_impl;
+
+template< int N >
+using make_index_sequence = typename make_index_sequence_impl<N>::type;
+
+template< > struct make_index_sequence_impl<0> : index_sequence<> {};
+template< > struct make_index_sequence_impl<1> : index_sequence<0> {};
+
+template< int N > struct make_index_sequence_impl
+	: concat< make_index_sequence<N / 2>, make_index_sequence<N - N / 2> > {};
+
+
+
+template < class IS > struct mystruct_base;
+
+template< int ... I >
+struct mystruct_base< index_sequence< I ... > >
+{
+
+	static constexpr int array[]{ I ... };
+};
+
+template< int ... I >
+constexpr int mystruct_base< index_sequence<I...> >::array[];
+
+template< int N > struct mystruct
+	: mystruct_base< make_index_sequence<N > >
+{};
+
+template< int ... I >
+static constexpr std::array< int, sizeof...(I) >  build_array(index_sequence<I...>) noexcept
+{
+	return std::array<int, sizeof...(I) > { I... };
+}
+//
+
 bool custom_cmp(const int& a, const int& b)
 {
 	return a > b;
@@ -42,11 +93,20 @@ int main()
 	std::cout << summ << std::endl;
 	/*7 | 8 |
 	  0 | 0 |*/
-	std::cout << summ.getRank() << std::endl; //2
+	std::cout << summ.getDim() << std::endl; //2
 
+	constexpr std::array<int, 20> ma = build_array(make_index_sequence<20>{});
+	for (auto e : ma) std::cout << e << ' ';
+	std::cout << std::endl;
 
-	constexpr ConstMatrix<int, 2, 3> a = {1,2,3,4,5,6};
-	std::cout << a;
+	constexpr matrix<double, 3, 3> constmatrix = {
+	1., 2., 3.,
+	4., 5., 6.,
+	7., 8., 9. };
+
+	//not working due to the lack of time and ideas about mars() implementation
+	// see ConstexprMatrix.h
+	//static_assert(rank(constmatrix) == 2, "rank"); 
 
 	return 0;
 }
